@@ -1,0 +1,57 @@
+.body{        
+    /* padding-top: 60px;
+    padding-bottom: 40px;
+    margin: 0;
+    z-index: 1000;
+    position: fixed !important; */
+}
+.container{
+    width: 80%;
+    margin: 0 auto; /* Center the DIV horizontally */
+    border-bottom: 1px solid #f1efef47;
+    z-index: 1000;
+    display: flex;
+}
+.fixed-header, .fixed-footer{
+    width: 100%;
+    position: relative;
+    z-index: 9999;
+    padding: 6px 0 !important;       
+    /* background: #333;
+    padding: 10px 0;
+    color: #fff; */
+
+    background: transparent;
+    padding: 10px 0;
+    color: #1185e1;
+    border-bottom: 1px solid #f4f4f4;
+}
+.fixed-header{
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+.fixed-footer{
+    bottom: 0;
+}    
+/* Some more styles to beutify this example */
+nav a{
+    color: black;
+    text-decoration: none;
+    padding: 7px 17px;
+    display: inline-block;
+    font-weight: 500;
+    font-size: x-large;
+}
+
+.container p{
+    line-height: 200px; /* Create scrollbar to test positioning */
+}
+
+.logoStyles {
+    height: -webkit-fill-available;
+    margin-top: -24px;
+    margin-left: -109px;
+}
