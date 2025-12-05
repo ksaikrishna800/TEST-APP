@@ -1,8 +1,27 @@
 // import logo from './logo.svg';
 import TestFirst from './TestFirst/TestFirst';
 import TestSecond from './TestSecond/TestSecond';
+// import pdf1 from './pdf1.pdf';
+import AllPagesExample from './AllPages';
 import logo from './fulllogo.jpg';
 import './App.css';
+// import { Document, Page, pdfjs } from "react-pdf";
+// import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
+// import pdfjsWorker from "react-pdf/node_modules/pdfjs-dist/build/pdf.worker.entry";
+// import worker from 'pdfjs-dist/webpack'
+
+// pdfjs.GlobalWorkerOptions.workerSrc = worker
+// import "pdfjs-dist/build/pdf.worker.entry";
+
+import { pdfjs } from 'react-pdf';
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+
+// import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
+// import { pdfjs } from 'react-pdf';
+// pdfjs.GlobalWorkerOptions.workerSrc = 'pdf.worker.min.js';
+
+
+// pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 function App() {
   return (
@@ -25,12 +44,18 @@ function App() {
               </div>
           </div>
       </div> */}
-          <div style={{ marginBottom: '100px' }}><TestFirst /></div>
-          <div style={{ marginBottom: '100px' }}><TestSecond /></div>
-          <div style={{ marginBottom: '100px' }}><TestFirst /></div>
-          <div style={{ marginBottom: '100px' }}><TestSecond /></div>
-          <div style={{ marginBottom: '100px' }}><TestFirst /></div>
-          <div style={{ marginBottom: '100px' }}><TestSecond /></div>
+          {/* <div style={{ marginBottom: '10px' }}><TestFirst /></div> */}
+          {/* <div style={{ marginBottom: '10px' }}><AllPagesExample pdf={ pdf1 }/></div> */}
+          {/* <div><object data="/pdf1.pdf" type="application/pdf">
+              <div>No PDF viewer available</div>
+          </object></div> */}
+          {/* <div style={{ marginTop: '10px' }}><TestSecond /></div> */}
+          {/* <div style={{ marginBottom: '300px' }}><TestFirst /></div> */}
+          {/* <div style={{ marginBottom: '100px' }}><TestSecond /></div> */}
+          {/* <div style={{ marginBottom: '100px' }}><TestFirst /></div> */}
+          {/* <div style={{ marginBottom: '100px' }}><TestSecond /></div> */}
+          {/* <div style={{ marginBottom: '100px' }}><TestFirst /></div> */}
+          {/* <div style={{ marginBottom: '100px' }}><TestSecond /></div> */}
     </div>
     </div>
   );
