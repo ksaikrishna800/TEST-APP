@@ -3,9 +3,9 @@ import './LinkedInClone.css';
 
 function LinkedInClone() {
   const [posts, setPosts] = useState([
-    { id: 1, author: 'John Doe', title: 'Software Engineer at Tech Corp', time: '3h', content: 'Excited to announce that I just launched my new project! 🚀', likes: 45, comments: 12 },
-    { id: 2, author: 'Jane Smith', title: 'Product Manager', time: '5h', content: 'Great team meeting today. Innovation is key! 💡', likes: 32, comments: 8 },
-    { id: 3, author: 'Mike Johnson', title: 'Full Stack Developer', time: '1d', content: 'Just completed a React course. Always learning! 📚', likes: 67, comments: 15 }
+    { id: 1, author: 'John Doe', title: 'Software Engineer at Tech Corp', time: '3h', content: 'Excited to announce that I just launched my new project! 🚀', likes: 45, comments: 12, image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600' },
+    { id: 2, author: 'Jane Smith', title: 'Product Manager', time: '5h', content: 'Great team meeting today. Innovation is key! 💡', likes: 32, comments: 8, image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600' },
+    { id: 3, author: 'Mike Johnson', title: 'Full Stack Developer', time: '1d', content: 'Just completed a React course. Always learning! 📚', likes: 67, comments: 15, image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600' }
   ]);
   const [postText, setPostText] = useState('');
 
@@ -75,6 +75,11 @@ function LinkedInClone() {
                 </div>
               </div>
               <div className="post-content">{post.content}</div>
+              {post.image && (
+                <div className="post-image">
+                  <img src={post.image} alt="Post" />
+                </div>
+              )}
               <div className="post-stats">
                 <span>👍 {post.likes}</span>
                 <span>{post.comments} comments</span>
