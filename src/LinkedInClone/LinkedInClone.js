@@ -23,6 +23,7 @@ function LinkedInClone() {
   ]);
   const [postText, setPostText] = useState('');
   const [carouselIndex, setCarouselIndex] = useState({});
+  const [autoSlideEnabled, setAutoSlideEnabled] = useState({});
   const videoRefs = useRef([]);
 
   useEffect(() => {
@@ -62,6 +63,26 @@ function LinkedInClone() {
     if (newIndex >= post.media.length) newIndex = 0;
     
     setCarouselIndex({ ...carouselIndex, [postId]: newIndex });
+  };
+
+  useEffect(() => {
+    const intervals = {};
+    
+    posts.forEach(post => {
+      if (post.media && post.media.length > 1 && autoSlideEnabled[post.id] !== false) {
+        intervals[post.id] = setInterval(() => {
+          handleCarouselNav(post.id, 1);
+        }, 3000);
+      }
+    });
+
+    return () => {
+      Object.values(intervals).forEach(interval => clearInterval(interval));
+    };
+  }, [posts, carouselIndex, autoSlideEnabled]);
+
+  const handleUserInteraction = (postId) => {
+    setAutoSlideEnabled({ ...autoSlideEnabled, [postId]: false });
   };
 
   const handlePost = () => {
@@ -134,7 +155,7 @@ function LinkedInClone() {
                 <div className="post-content">{post.content}</div>
                 
                 {post.media ? (
-                  <div className="post-media-carousel">
+                  <div className="post-media-carousel" onClick={() => handleUserInteraction(post.id)}>
                     <div className="carousel-container" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                       {post.media.map((item, idx) => (
                         <div key={idx} className="carousel-item">
@@ -148,6 +169,7 @@ function LinkedInClone() {
                               muted
                               playsInline
                               controls
+                              style={{ display: idx === currentIndex ? 'block' : 'none' }}
                             />
                           )}
                         </div>
