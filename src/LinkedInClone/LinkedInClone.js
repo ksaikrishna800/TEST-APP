@@ -19,7 +19,22 @@ function LinkedInClone() {
       ]
     },
     { id: 3, author: 'Mike Johnson', title: 'Full Stack Developer', time: '1d', content: 'Great team meeting today. Innovation is key! 💡', likes: 32, comments: 8, image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600' },
-    { id: 4, author: 'Sarah Lee', title: 'UX Designer', time: '2d', content: 'Just completed a React course. Always learning! 📚', likes: 67, comments: 15, image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600' }
+    {
+      id: 4,
+      author: 'Alex Chen',
+      title: 'Tech Lead at Innovation Labs',
+      time: '12h',
+      content: 'Our team\'s journey from concept to deployment! Check out these amazing moments 💻✨',
+      likes: 203,
+      comments: 56,
+      media: [
+        { type: 'image', url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600' },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600' },
+        { type: 'video', url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4' },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600' }
+      ]
+    },
+    { id: 5, author: 'Sarah Lee', title: 'UX Designer', time: '2d', content: 'Just completed a React course. Always learning! 📚', likes: 67, comments: 15, image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600' }
   ]);
   const [postText, setPostText] = useState('');
   const [carouselIndex, setCarouselIndex] = useState({});

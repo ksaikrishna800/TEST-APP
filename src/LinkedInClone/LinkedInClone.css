@@ -123,8 +123,14 @@
 .create-post-box, .post-card {
   background: white;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.create-post-box:hover, .post-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .post-input-wrapper {
@@ -163,12 +169,17 @@
 
 .post-card {
   padding: 0;
+  overflow: hidden;
 }
 
 .post-header {
   display: flex;
   gap: 10px;
   padding: 15px 15px 0;
+  align-items: flex-start;
+  background: white;
+  z-index: 5;
+  position: relative;
 }
 
 .post-avatar {
@@ -181,12 +192,14 @@
   justify-content: center;
   font-size: 24px;
   flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .post-info h4 {
   margin: 0;
   font-size: 14px;
   color: #000;
+  font-weight: 600;
 }
 
 .post-title {
@@ -206,6 +219,9 @@
   font-size: 14px;
   line-height: 1.5;
   color: #000;
+  background: white;
+  z-index: 5;
+  position: relative;
 }
 
 .post-image {
@@ -239,19 +255,27 @@
 .post-media-carousel {
   position: relative;
   width: 100%;
-  max-height: 500px;
+  height: 400px;
   overflow: hidden;
-  background: #000;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .carousel-container {
   display: flex;
-  transition: transform 0.3s ease;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .carousel-item {
   min-width: 100%;
-  height: 500px;
+  height: 100%;
+  position: relative;
 }
 
 .carousel-item img,
@@ -265,54 +289,71 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   color: white;
-  border: none;
-  width: 40px;
-  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 20;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
 }
 
 .carousel-nav:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
+  border-color: white;
+  transform: translateY(-50%) scale(1.1);
 }
 
 .carousel-prev {
-  left: 10px;
+  left: 15px;
 }
 
 .carousel-next {
-  right: 10px;
+  right: 15px;
 }
 
 .carousel-indicators {
   position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 10px;
+  left: 10px;
+  right: 10px;
   display: flex;
-  gap: 8px;
-  z-index: 10;
+  gap: 4px;
+  z-index: 15;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  backdrop-filter: none;
 }
 
 .indicator-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  width: 0;
+  height: 6px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.3);
   cursor: pointer;
   border: none;
   padding: 0;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+.indicator-dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: none;
 }
 
 .indicator-dot.active {
   background: white;
+  width: auto;
+  border-radius: 3px;
 }
 
 .post-stats {
