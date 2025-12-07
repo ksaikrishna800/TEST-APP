@@ -34,7 +34,33 @@ function LinkedInClone() {
         { type: 'image', url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600' }
       ]
     },
-    { id: 5, author: 'Sarah Lee', title: 'UX Designer', time: '2d', content: 'Just completed a React course. Always learning! 📚', likes: 67, comments: 15, image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600' }
+    {
+      id: 5,
+      author: 'Ricardo Coronado',
+      title: 'Business Manager | Payroll & Business Specialist',
+      time: '1d',
+      content: 'Hello all. Kindly share my resume with your networks. 💼',
+      likes: 75,
+      comments: 12,
+      media: [
+        { type: 'pdf', url: '/sample.pdf' }
+      ]
+    },
+    { id: 6, author: 'Sarah Lee', title: 'UX Designer', time: '2d', content: 'Just completed a React course. Always learning! 📚', likes: 67, comments: 15, image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600' },
+    {
+      id: 7,
+      author: 'David Martinez',
+      title: 'Senior Developer | Tech Enthusiast',
+      time: '6h',
+      content: 'Check out my portfolio! Video demo, project screenshots, and full resume included 🚀📄',
+      likes: 189,
+      comments: 34,
+      media: [
+        { type: 'video', url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4' },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600' },
+        { type: 'pdf', url: '/sample.pdf' }
+      ]
+    }
   ]);
   const [postText, setPostText] = useState('');
   const [carouselIndex, setCarouselIndex] = useState({});
@@ -176,7 +202,7 @@ function LinkedInClone() {
                         <div key={idx} className="carousel-item">
                           {item.type === 'image' ? (
                             <img src={item.url} alt="Post media" />
-                          ) : (
+                          ) : item.type === 'video' ? (
                             <video 
                               ref={(el) => (videoRefs.current[`${post.id}-${idx}`] = el)}
                               src={item.url}
@@ -186,7 +212,13 @@ function LinkedInClone() {
                               controls
                               style={{ display: idx === currentIndex ? 'block' : 'none' }}
                             />
-                          )}
+                          ) : item.type === 'pdf' ? (
+                            <iframe 
+                              src={`${item.url}#toolbar=0&navpanes=0&scrollbar=0`}
+                              title="PDF Document"
+                              className="pdf-viewer"
+                            />
+                          ) : null}
                         </div>
                       ))}
                     </div>
