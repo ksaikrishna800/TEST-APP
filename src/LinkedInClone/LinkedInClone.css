@@ -387,7 +387,8 @@
   border: none;
   background: white;
   display: block;
-  object-fit: contain;
+  transform: scale(0.9);
+  transform-origin: center top;
 }
 
 .carousel-nav {

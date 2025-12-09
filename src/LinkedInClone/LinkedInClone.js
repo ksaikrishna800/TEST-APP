@@ -214,7 +214,7 @@ function LinkedInClone() {
                             />
                           ) : item.type === 'pdf' ? (
                             <iframe 
-                              src={`${item.url}#toolbar=0&navpanes=0&scrollbar=0`}
+                              src={`${item.url}#toolbar=0&navpanes=0&scrollbar=0&view=FitH&zoom=page-fit`}
                               title="PDF Document"
                               className="pdf-viewer"
                             />
