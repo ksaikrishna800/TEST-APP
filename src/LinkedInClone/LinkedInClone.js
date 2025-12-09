@@ -65,6 +65,7 @@ function LinkedInClone() {
   const [postText, setPostText] = useState('');
   const [carouselIndex, setCarouselIndex] = useState({});
   const [autoSlideEnabled, setAutoSlideEnabled] = useState({});
+  const [fullscreenMedia, setFullscreenMedia] = useState(null);
   const videoRefs = useRef([]);
 
   useEffect(() => {
@@ -133,6 +134,15 @@ function LinkedInClone() {
     }
   };
 
+  const openFullscreen = (media, e) => {
+    e.stopPropagation();
+    setFullscreenMedia(media);
+  };
+
+  const closeFullscreen = () => {
+    setFullscreenMedia(null);
+  };
+
   return (
     <div className="linkedin-clone">
       <header className="linkedin-header">
@@ -199,25 +209,34 @@ function LinkedInClone() {
                   <div className="post-media-carousel" onClick={() => handleUserInteraction(post.id)}>
                     <div className="carousel-container" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                       {post.media.map((item, idx) => (
-                        <div key={idx} className="carousel-item">
+                        <div key={idx} className="carousel-item media-item-wrapper">
                           {item.type === 'image' ? (
-                            <img src={item.url} alt="Post media" />
+                            <>
+                              <img src={item.url} alt="Post media" />
+                              <button className="fullscreen-btn" onClick={(e) => openFullscreen(item, e)}>⛶</button>
+                            </>
                           ) : item.type === 'video' ? (
-                            <video 
-                              ref={(el) => (videoRefs.current[`${post.id}-${idx}`] = el)}
-                              src={item.url}
-                              loop
-                              muted
-                              playsInline
-                              controls
-                              style={{ display: idx === currentIndex ? 'block' : 'none' }}
-                            />
+                            <>
+                              <video 
+                                ref={(el) => (videoRefs.current[`${post.id}-${idx}`] = el)}
+                                src={item.url}
+                                loop
+                                muted
+                                playsInline
+                                controls
+                                style={{ display: idx === currentIndex ? 'block' : 'none' }}
+                              />
+                              <button className="fullscreen-btn" onClick={(e) => openFullscreen(item, e)}>⛶</button>
+                            </>
                           ) : item.type === 'pdf' ? (
-                            <iframe 
-                              src={`${item.url}#toolbar=0&navpanes=0&scrollbar=0&view=FitH&zoom=page-fit`}
-                              title="PDF Document"
-                              className="pdf-viewer"
-                            />
+                            <>
+                              <iframe 
+                                src={`${item.url}#toolbar=0&navpanes=0&scrollbar=0&view=FitH&zoom=page-fit`}
+                                title="PDF Document"
+                                className="pdf-viewer"
+                              />
+                              <button className="fullscreen-btn" onClick={(e) => openFullscreen(item, e)}>⛶</button>
+                            </>
                           ) : null}
                         </div>
                       ))}
@@ -239,11 +258,12 @@ function LinkedInClone() {
                     )}
                   </div>
                 ) : post.image ? (
-                  <div className="post-image">
+                  <div className="post-image media-item-wrapper">
                     <img src={post.image} alt="Post" />
+                    <button className="fullscreen-btn" onClick={(e) => openFullscreen({ type: 'image', url: post.image }, e)}>⛶</button>
                   </div>
                 ) : post.video ? (
-                  <div className="post-video">
+                  <div className="post-video media-item-wrapper">
                     <video 
                       ref={(el) => (videoRefs.current[index] = el)}
                       src={post.video}
@@ -252,6 +272,7 @@ function LinkedInClone() {
                       playsInline
                       controls
                     />
+                    <button className="fullscreen-btn" onClick={(e) => openFullscreen({ type: 'video', url: post.video }, e)}>⛶</button>
                   </div>
                 ) : null}
                 
@@ -282,6 +303,21 @@ function LinkedInClone() {
           </div>
         </aside>
       </div>
+
+      {fullscreenMedia && (
+        <div className="fullscreen-overlay" onClick={closeFullscreen}>
+          <button className="fullscreen-close" onClick={closeFullscreen}>✕</button>
+          <div className="fullscreen-content" onClick={(e) => e.stopPropagation()}>
+            {fullscreenMedia.type === 'image' ? (
+              <img src={fullscreenMedia.url} alt="Fullscreen" />
+            ) : fullscreenMedia.type === 'video' ? (
+              <video src={fullscreenMedia.url} controls autoPlay loop />
+            ) : fullscreenMedia.type === 'pdf' ? (
+              <iframe src={fullscreenMedia.url} title="PDF Fullscreen" />
+            ) : null}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
